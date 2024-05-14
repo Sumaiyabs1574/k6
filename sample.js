@@ -12,9 +12,13 @@ export const options = {
 //},
 scenarios: {
   contacts: {
-    executor: 'constant-vus',
-    vus: 10,
-    duration: '30s',
+    executor: 'ramping-vus',
+    startVUs: 0,
+    stages: [
+      { duration: '20s', target: 10 },
+      { duration: '10s', target: 0 },
+    ],
+    gracefulRampDown: '0s'
   },
 },
 };
