@@ -12,12 +12,12 @@ export const options = {
 //},
 scenarios: {
   contacts: {
-    executor: 'shared-iterations',
+    executor: 'constant-vus',
     vus: 10,
-    iterations: 200,
-
-
-}}};
+    duration: '30s',
+  },
+},
+};
 export default function () {
   console.log(exec.vu.idInTest);
  // const baseUrl = "https://reqres.in/";
