@@ -1,10 +1,22 @@
 import http from "k6/http";
 import { check, sleep } from "k6";
 export const options = {
-  vus: 10,
+  Senarios:{
+    accountCreate:{
+      executer:"per_vus_iterations",
+  vus: 5,
   iterations:10,
   duration: "1m",
-};
+},
+accountCreate2:{
+  executer:"Shared_iterations",
+vus: 5,
+iterations:10,
+duration: "1m",
+},
+
+
+}};
 export default function () {
   const baseUrl = "https://reqres.in/";
   const endPoint = "api/users/2";
@@ -12,6 +24,5 @@ export default function () {
   check(res, { "is status 200": (r) => r.status === 200 });
   res.body;
    // console.log(res);
-    // console.log(res);
   sleep(1);
 }
