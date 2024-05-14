@@ -12,16 +12,19 @@ export const options = {
 //},
 scenarios: {
   contacts: {
-    executor: 'ramping-vus',
-    startVUs: 0,
-    stages: [
-      { duration: '20s', target: 10 },
-      { duration: '10s', target: 0 },
-    ],
-    gracefulRampDown: '0s'
+    executor: 'shared-iterations',
+    vus: 5,
+    iterations: 10,
+  
   },
 },
+
+thresholds: {
+  http_req_failed: ['rate<0.01'], // http errors should be less than 1%
+  http_req_duration: ['p(95)<35'], // 95% of requests should be below 200ms
+},
 };
+
 export default function () {
   console.log(exec.vu.idInTest);
  // const baseUrl = "https://reqres.in/";
