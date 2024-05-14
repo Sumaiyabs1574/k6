@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "k6": "^0.0.0"
+  },
+  "name": "loadtesting",
+  "version": "1.0.0",
+  "main": "sample.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:demo": "k6 run sample.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
