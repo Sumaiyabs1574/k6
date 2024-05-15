@@ -1,20 +1,22 @@
-import http from 'k6/http';
+//1. init code
+import http from "k6/http";
+import { sleep } from "k6";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
+ 
+//Test Options
+ 
 export const options = {
-  vus: 30,
-  duration: '2m',
-  thresholds: {
-    http_req_duration: [{ threshold: 'p(99) < 10', abortOnFail: true }],
-  },
+  vus: 300,
+  duration: "30s",
 };
-
+ 
 export default function () {
-  http.get('https://test-api.k6.io/public/crocodiles/1/');
+  http.get("http://test.k6.io");
+  sleep(1);
 }
-export function teardown(data) {
+ 
+export function handleSummary(data) {
   return {
     "summary.html": htmlReport(data),
-    stdout: textSummary(data, { indent: " ", enableColors: true }),
   };
 }
