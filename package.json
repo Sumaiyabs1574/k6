@@ -8,7 +8,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:demo": "k6 run sample.js"
+    "test:demo": "k6 run matrics.js"
   },
   "author": "",
   "license": "ISC",
