@@ -1,18 +1,12 @@
-import { check } from 'k6';
-import { csv } from 'k6/parse';
-let data = csv.open('users.csv');
-
+import http from "k6/http";
+import { sleep } from "k6";
+import exec from "k6/execution";
+import papaparse from "https://jslib.k6.io/papaparse/5.1.1/index.js";
+const csvData = papaparse.parse(open("users.csv"), { header: true }).data;
 export default function () {
-    let row = data.next();
-    if (row) {
-        
-        let first_name = row['first_name'];
-        let last_name = row['last_name'];
-
-        console.log(`first_name: ${first_name}, last_name: ${last_name}`);
-
+   
+    console.info(csvData[0]);
+    const user = csvData[exec.scenario.iterationInTest];
     
-    } else {
-        console.log('End of CSV file reached.');
-    }
-}
+   
+        sleep(1);}
